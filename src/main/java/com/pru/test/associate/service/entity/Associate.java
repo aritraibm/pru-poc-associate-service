@@ -19,6 +19,8 @@ public class Associate {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long associateId;
     private String associateName;
+    private String ibmId;
+    private Long projectId;
     private String engagementName;
     private String majorFunction;
     private String band;
@@ -32,6 +34,7 @@ public class Associate {
     private String city;
     private String billType;
     private String billCode;
+    private String teamOrRole;
     private String role;
     private Date asOnDate;
     private Date pruExpDate;
@@ -55,7 +58,6 @@ public class Associate {
     private String riskMitigationComments;
     private String planInCaseOfExtensionAmendmentRejection;
     private String activeInactive;
-    
 	public Long getAssociateId() {
 		return associateId;
 	}
@@ -67,6 +69,18 @@ public class Associate {
 	}
 	public void setAssociateName(String associateName) {
 		this.associateName = associateName;
+	}
+	public String getIbmId() {
+		return ibmId;
+	}
+	public void setIbmId(String ibmId) {
+		this.ibmId = ibmId;
+	}
+	public Long getProjectId() {
+		return projectId;
+	}
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
 	}
 	public String getEngagementName() {
 		return engagementName;
@@ -145,6 +159,12 @@ public class Associate {
 	}
 	public void setBillCode(String billCode) {
 		this.billCode = billCode;
+	}
+	public String getTeamOrRole() {
+		return teamOrRole;
+	}
+	public void setTeamOrRole(String teamOrRole) {
+		this.teamOrRole = teamOrRole;
 	}
 	public String getRole() {
 		return role;
@@ -284,23 +304,43 @@ public class Associate {
 	public void setActiveInactive(String activeInactive) {
 		this.activeInactive = activeInactive;
 	}
-	
+	@Override
+	public String toString() {
+		return "Associate [associateId=" + associateId + ", associateName=" + associateName + ", ibmId=" + ibmId
+				+ ", projectId=" + projectId + ", engagementName=" + engagementName + ", majorFunction=" + majorFunction
+				+ ", band=" + band + ", primaryContact=" + primaryContact + ", emailIbm=" + emailIbm + ", emailPru="
+				+ emailPru + ", xid=" + xid + ", prudentialManager=" + prudentialManager + ", endDate=" + endDate
+				+ ", location=" + location + ", city=" + city + ", billType=" + billType + ", billCode=" + billCode
+				+ ", teamOrRole=" + teamOrRole + ", role=" + role + ", asOnDate=" + asOnDate + ", pruExpDate="
+				+ pruExpDate + ", itExpDate=" + itExpDate + ", ibmDate=" + ibmDate + ", experienceWithPru="
+				+ experienceWithPru + ", careerExperience=" + careerExperience + ", experienceWithIbm="
+				+ experienceWithIbm + ", skillset=" + skillset + ", resourceCriticality=" + resourceCriticality
+				+ ", atImmigrationVisaRisks=" + atImmigrationVisaRisks + ", backupSuccessorResource="
+				+ backupSuccessorResource + ", keyContingencyGroup=" + keyContingencyGroup + ", additionalContingency="
+				+ additionalContingency + ", visaType=" + visaType + ", workPermitValidUntil=" + workPermitValidUntil
+				+ ", extensionUpdates=" + extensionUpdates + ", visaMaxOutDate=" + visaMaxOutDate + ", timeLeftInUs="
+				+ timeLeftInUs + ", h1bNominations=" + h1bNominations + ", riskMitigationComments="
+				+ riskMitigationComments + ", planInCaseOfExtensionAmendmentRejection="
+				+ planInCaseOfExtensionAmendmentRejection + ", activeInactive=" + activeInactive + "]";
+	}
 	public Associate() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Associate(Long associateId, String associateName, String engagementName, String majorFunction, String band,
-			String primaryContact, String emailIbm, String emailPru, String xid, String prudentialManager, Date endDate,
-			String location, String city, String billType, String billCode, String role, Date asOnDate, Date pruExpDate,
-			Date itExpDate, Date ibmDate, String experienceWithPru, String careerExperience, String experienceWithIbm,
-			String skillset, String resourceCriticality, String atImmigrationVisaRisks, Long backupSuccessorResource,
+	public Associate(Long associateId, String associateName, String ibmId, Long projectId, String engagementName,
+			String majorFunction, String band, String primaryContact, String emailIbm, String emailPru, String xid,
+			String prudentialManager, Date endDate, String location, String city, String billType, String billCode,
+			String teamOrRole, String role, Date asOnDate, Date pruExpDate, Date itExpDate, Date ibmDate,
+			String experienceWithPru, String careerExperience, String experienceWithIbm, String skillset,
+			String resourceCriticality, String atImmigrationVisaRisks, Long backupSuccessorResource,
 			String keyContingencyGroup, String additionalContingency, String visaType, String workPermitValidUntil,
 			String extensionUpdates, Date visaMaxOutDate, String timeLeftInUs, String h1bNominations,
 			String riskMitigationComments, String planInCaseOfExtensionAmendmentRejection, String activeInactive) {
 		super();
 		this.associateId = associateId;
 		this.associateName = associateName;
+		this.ibmId = ibmId;
+		this.projectId = projectId;
 		this.engagementName = engagementName;
 		this.majorFunction = majorFunction;
 		this.band = band;
@@ -314,6 +354,7 @@ public class Associate {
 		this.city = city;
 		this.billType = billType;
 		this.billCode = billCode;
+		this.teamOrRole = teamOrRole;
 		this.role = role;
 		this.asOnDate = asOnDate;
 		this.pruExpDate = pruExpDate;
@@ -338,26 +379,7 @@ public class Associate {
 		this.planInCaseOfExtensionAmendmentRejection = planInCaseOfExtensionAmendmentRejection;
 		this.activeInactive = activeInactive;
 	}
-	
-	@Override
-	public String toString() {
-		return "Associate [associateId=" + associateId + ", associateName=" + associateName + ", engagementName="
-				+ engagementName + ", majorFunction=" + majorFunction + ", band=" + band + ", primaryContact="
-				+ primaryContact + ", emailIbm=" + emailIbm + ", emailPru=" + emailPru + ", xid=" + xid
-				+ ", prudentialManager=" + prudentialManager + ", endDate=" + endDate + ", location=" + location
-				+ ", city=" + city + ", billType=" + billType + ", billCode=" + billCode + ", role=" + role
-				+ ", asOnDate=" + asOnDate + ", pruExpDate=" + pruExpDate + ", itExpDate=" + itExpDate + ", ibmDate="
-				+ ibmDate + ", experienceWithPru=" + experienceWithPru + ", careerExperience=" + careerExperience
-				+ ", experienceWithIbm=" + experienceWithIbm + ", skillset=" + skillset + ", resourceCriticality="
-				+ resourceCriticality + ", atImmigrationVisaRisks=" + atImmigrationVisaRisks
-				+ ", backupSuccessorResource=" + backupSuccessorResource + ", keyContingencyGroup="
-				+ keyContingencyGroup + ", additionalContingency=" + additionalContingency + ", visaType=" + visaType
-				+ ", workPermitValidUntil=" + workPermitValidUntil + ", extensionUpdates=" + extensionUpdates
-				+ ", visaMaxOutDate=" + visaMaxOutDate + ", timeLeftInUs=" + timeLeftInUs + ", h1bNominations="
-				+ h1bNominations + ", riskMitigationComments=" + riskMitigationComments
-				+ ", planInCaseOfExtensionAmendmentRejection=" + planInCaseOfExtensionAmendmentRejection
-				+ ", activeInactive=" + activeInactive + "]";
-	}
     
+	
 	
 }

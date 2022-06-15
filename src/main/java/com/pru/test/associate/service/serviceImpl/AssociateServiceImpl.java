@@ -93,4 +93,18 @@ public class AssociateServiceImpl implements AssociateService {
 	}
 
 
+	@Override
+	public List<Associate> getAssociateDetailsForExcelExportIbmId(String ibmId) {
+		// TODO Auto-generated method stub
+		return associateRepo.getExcelDetailsByAssociateId(ibmId);
+	}
+
+
+	@Override
+	public List<Associate> getAssociateDetailsForExcelExport() {
+		// TODO Auto-generated method stub
+		return associateRepo.findAll();
+	}
+
+
 }

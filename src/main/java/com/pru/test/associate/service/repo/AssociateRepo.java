@@ -13,6 +13,9 @@ import com.pru.test.associate.service.entity.Associate;
 public interface AssociateRepo extends JpaRepository<Associate, Long> {
 
 	Associate findByAssociateId(Long associateId);
+	
+	@Query(value = "select * from tbl_associate_details where ibm_id like %:ibmId%", nativeQuery = true)
+	public List<Associate> getExcelDetailsByAssociateId(@Param(value = "ibmId") String ibmId);
 
 //	@Query(value="select * from tbl_associate_details where band= :band", nativeQuery= true)
 //	List<Associate> searchAssociateDetailsSQL(@Param(value = "associateName") String associateName, @Param(value = "band") String band, @Param(value = "emailIbm") String emailIbm, @Param(value = "xid") String xid);

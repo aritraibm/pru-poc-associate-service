@@ -24,5 +24,9 @@ public interface AssociateService {
 
 	public List<Associate> searchAssociateDetails(SearchAssociateRequest formData);
 
+	public List<Associate> getAssociateDetailsForExcelExportIbmId(String ibmId);
+
+	public List<Associate> getAssociateDetailsForExcelExport();
+
 	
 }

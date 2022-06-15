@@ -18,6 +18,14 @@ import com.pru.test.associate.service.entity.Associate;
 import com.pru.test.associate.service.model.AssociateRequest;
 import com.pru.test.associate.service.model.SearchAssociateRequest;
 import com.pru.test.associate.service.service.AssociateService;
+import com.pru.test.associate.service.serviceImpl.AssociateExcelExporter;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 
 import io.github.resilience4j.retry.annotation.Retry;
 
@@ -59,6 +67,37 @@ public class AssociateController {
 		return associateService.searchAssociateDetails(formData);
 	}
 	
+	
+	@GetMapping("/export-excel/{ibmId}")
+    public void exportToExcelByIbmId(@PathVariable String ibmId, HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Associates_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+         
+        List<Associate> listUsers = associateService.getAssociateDetailsForExcelExportIbmId(ibmId);
+        AssociateExcelExporter excelExporter = new AssociateExcelExporter(listUsers);
+        excelExporter.export(response);    
+    }  
+	
+	
+	@GetMapping("/export-excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Associates_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+         
+        List<Associate> listUsers = associateService.getAssociateDetailsForExcelExport();
+        AssociateExcelExporter excelExporter = new AssociateExcelExporter(listUsers);
+        excelExporter.export(response);    
+    }  
 	
 	public String invokeFallbackMethod(Exception ex) {
 		return "Service Error : "+ex.getMessage();
