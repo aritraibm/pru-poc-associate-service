@@ -11,6 +11,7 @@ import com.pru.test.associate.service.VO.AssociateWithSkillTemplateVO;
 import com.pru.test.associate.service.entity.Associate;
 import com.pru.test.associate.service.model.AssociateRequest;
 import com.pru.test.associate.service.model.SearchAssociateRequest;
+import com.pru.test.associate.service.model.SkillExcelExport;
 
 
 public interface AssociateService {
@@ -27,6 +28,8 @@ public interface AssociateService {
 	public List<Associate> getAssociateDetailsForExcelExportIbmId(String ibmId);
 
 	public List<Associate> getAssociateDetailsForExcelExport();
+
+	public List<SkillExcelExport> getAssociateSkillDetailsForExcelExportIbmId(String ibmId);
 
 	
 }

@@ -17,6 +17,7 @@ import com.pru.test.associate.service.VO.AssociateWithSkillTemplateVO;
 import com.pru.test.associate.service.entity.Associate;
 import com.pru.test.associate.service.model.AssociateRequest;
 import com.pru.test.associate.service.model.SearchAssociateRequest;
+import com.pru.test.associate.service.model.SkillExcelExport;
 import com.pru.test.associate.service.service.AssociateService;
 import com.pru.test.associate.service.serviceImpl.AssociateExcelExporter;
 
@@ -78,8 +79,11 @@ public class AssociateController {
         String headerValue = "attachment; filename=Associates_" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
          
-        List<Associate> listUsers = associateService.getAssociateDetailsForExcelExportIbmId(ibmId);
-        AssociateExcelExporter excelExporter = new AssociateExcelExporter(listUsers);
+        List<Associate> listAssociates = associateService.getAssociateDetailsForExcelExportIbmId(ibmId);
+        List<SkillExcelExport> listAssociateSkills = associateService.getAssociateSkillDetailsForExcelExportIbmId(ibmId);
+        
+        //getAssociateSkillDetailsForExcelExportIbmId(String ibmId)
+        AssociateExcelExporter excelExporter = new AssociateExcelExporter(listAssociates, listAssociateSkills);
         excelExporter.export(response);    
     }  
 	
@@ -94,8 +98,8 @@ public class AssociateController {
         String headerValue = "attachment; filename=Associates_" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
          
-        List<Associate> listUsers = associateService.getAssociateDetailsForExcelExport();
-        AssociateExcelExporter excelExporter = new AssociateExcelExporter(listUsers);
+        List<Associate> listAssociates = associateService.getAssociateDetailsForExcelExport();
+        AssociateExcelExporter excelExporter = new AssociateExcelExporter(listAssociates, null);
         excelExporter.export(response);    
     }  
 	

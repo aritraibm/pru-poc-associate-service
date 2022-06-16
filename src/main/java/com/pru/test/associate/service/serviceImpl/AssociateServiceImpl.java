@@ -14,8 +14,10 @@ import com.pru.test.associate.service.entity.Associate;
 import com.pru.test.associate.service.entity.AssociateSkill;
 import com.pru.test.associate.service.model.AssociateRequest;
 import com.pru.test.associate.service.model.SearchAssociateRequest;
+import com.pru.test.associate.service.model.SkillExcelExport;
 import com.pru.test.associate.service.repo.AssociateRepo;
 import com.pru.test.associate.service.repo.AssociateSkillRepo;
+import com.pru.test.associate.service.repo.AssociateSkillWithoutJPARepo;
 import com.pru.test.associate.service.service.AssociateService;
 
 @Service
@@ -26,6 +28,9 @@ public class AssociateServiceImpl implements AssociateService {
 	
 	@Autowired
 	private AssociateRepo associateRepo;
+	
+	@Autowired
+	private AssociateSkillWithoutJPARepo associateSkillWithoutJPARepo;
 	
 	@Autowired
 	private AssociateSkillRepo associateSkillRepo;
@@ -105,6 +110,13 @@ public class AssociateServiceImpl implements AssociateService {
 		// TODO Auto-generated method stub
 		return associateRepo.findAll();
 	}
+	
+	@Override
+	public List<SkillExcelExport> getAssociateSkillDetailsForExcelExportIbmId(String ibmId) {
+		// TODO Auto-generated method stub
+		return associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExportIbmId(ibmId);
+	}
+	
 
 
 }
