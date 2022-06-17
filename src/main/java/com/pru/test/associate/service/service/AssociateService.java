@@ -1,6 +1,7 @@
 package com.pru.test.associate.service.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +31,8 @@ public interface AssociateService {
 	public List<Associate> getAssociateDetailsForExcelExport();
 
 	public List<SkillExcelExport> getAssociateSkillDetailsForExcelExportIbmId(String ibmId);
+
+	public Map<String, List<SkillExcelExport>> getlistAssociateSkillDetailsForExcelExport();
 
 	
 }
