@@ -1,6 +1,8 @@
 package com.pru.test.associate.service.controller;
 
 import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +70,6 @@ public class AssociateController {
 		return associateService.searchAssociateDetails(formData);
 	}
 	
-	
 	@GetMapping("/export-excel/{ibmId}")
     public void exportToExcelByIbmId(@PathVariable String ibmId, HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
@@ -83,7 +84,7 @@ public class AssociateController {
         List<SkillExcelExport> listAssociateSkills = associateService.getAssociateSkillDetailsForExcelExportIbmId(ibmId);
         
         //getAssociateSkillDetailsForExcelExportIbmId(String ibmId)
-        AssociateExcelExporter excelExporter = new AssociateExcelExporter(listAssociates, listAssociateSkills);
+        AssociateExcelExporter excelExporter = new AssociateExcelExporter(listAssociates, listAssociateSkills,null,"INDIVIDUAL");
         excelExporter.export(response);    
     }  
 	
@@ -99,9 +100,13 @@ public class AssociateController {
         response.setHeader(headerKey, headerValue);
          
         List<Associate> listAssociates = associateService.getAssociateDetailsForExcelExport();
-        AssociateExcelExporter excelExporter = new AssociateExcelExporter(listAssociates, null);
+        
+        Map<String, List<SkillExcelExport>>  skillsMap=associateService.getlistAssociateSkillDetailsForExcelExport();
+        System.out.println("skillsMap: "+skillsMap);
+        AssociateExcelExporter excelExporter = new AssociateExcelExporter(listAssociates, null,skillsMap,"ALL");
         excelExporter.export(response);    
     }  
+	
 	
 	public String invokeFallbackMethod(Exception ex) {
 		return "Service Error : "+ex.getMessage();

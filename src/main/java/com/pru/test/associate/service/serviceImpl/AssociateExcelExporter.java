@@ -5,9 +5,13 @@ import org.springframework.stereotype.Service;
 import com.pru.test.associate.service.entity.Associate;
 import com.pru.test.associate.service.model.SkillExcelExport;
 
+import io.vavr.collection.Iterator;
+
 import java.io.IOException;
 import java.util.List;
- 
+import java.util.Map;
+import java.util.Map.Entry;
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
  
@@ -23,14 +27,24 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 @Service
 public class AssociateExcelExporter {
     private XSSFWorkbook workbook;
+    private String type;
     private XSSFSheet sheet;
     private XSSFSheet secondSheet;
     private List<Associate> listAssociates;
     private List<SkillExcelExport> listAssociateSkills;
+    private Map<String, List<SkillExcelExport>>  skillsMap;
 
-	public AssociateExcelExporter(List<Associate> listAssociates, List<SkillExcelExport> listAssociateSkills) {
+	public AssociateExcelExporter() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public AssociateExcelExporter(List<Associate> listAssociates, List<SkillExcelExport> listAssociateSkills,Map<String, List<SkillExcelExport>>  skillsMap,String type) {
         this.listAssociates = listAssociates;
         this.listAssociateSkills = listAssociateSkills;
+        this.skillsMap=skillsMap;
+        this.type=type;
         workbook = new XSSFWorkbook();
     }
  
@@ -99,14 +113,23 @@ public class AssociateExcelExporter {
 //        createCell(secondRow, 2, "Skill Name", sRowStyle);
 //        createCell(secondRow, 3, "Skill Rating", sRowStyle);
         
-        System.out.println("listAssociateSkills SIZE :::::: >>>>>"+listAssociateSkills.size());
-        System.out.println("listAssociateSkills DATA :::::: >>>>>"+listAssociateSkills.toString());
+       // System.out.println("listAssociateSkills SIZE :::::: >>>>>"+listAssociateSkills.size());
+       // System.out.println("listAssociateSkills DATA :::::: >>>>>"+listAssociateSkills.toString());
         
         int columnCount = 2;
-        for (SkillExcelExport skillTabheader : listAssociateSkills) {
-            createCell(secondRow, columnCount++, skillTabheader.getSkillName(), sRowStyle);
-            
+        if(this.type.equalsIgnoreCase("ALL")) {
+        	List<SkillExcelExport> Skills= skillsMap.entrySet().iterator().next().getValue();
+        	for (SkillExcelExport skillTabheader : Skills) {
+                createCell(secondRow, columnCount++, skillTabheader.getSkillName(), sRowStyle);
+                
+            }
+        }else {
+        	for (SkillExcelExport skillTabheader : listAssociateSkills) {
+                createCell(secondRow, columnCount++, skillTabheader.getSkillName(), sRowStyle);
+                
+            }
         }
+        
         
     }
      
@@ -170,15 +193,40 @@ public class AssociateExcelExporter {
         }
         
         
-        Row secondRow = secondSheet.createRow(secondRowCount++);
-        int columnCount = 0;
         
-        createCell(secondRow, columnCount++, listAssociateSkills.get(0).getAssociateName(), style);
-        createCell(secondRow, columnCount++, listAssociateSkills.get(0).getXid(), style);
+        
+        if(type.equalsIgnoreCase("ALL")) {
+        	java.util.Iterator<Entry<String, List<SkillExcelExport>>> iterator = this.skillsMap.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Entry<String, List<SkillExcelExport>> entry = iterator.next();
+                System.out.println(entry.getKey() + ":" + entry.getValue());
+                
+                Row row = secondSheet.createRow(secondRowCount++);
+                int columnCount = 0;
+            	 createCell(row, columnCount++, entry.getValue().get(0).getAssociateName(), style);
+                 createCell(row, columnCount++, entry.getValue().get(0).getXid(), style);
 
-        for (SkillExcelExport skillTabData : listAssociateSkills) {
-            createCell(secondRow, columnCount++, skillTabData.getSkillRating(), style);
+                 for (SkillExcelExport skillTabData : entry.getValue()) {
+                     createCell(row, columnCount++, skillTabData.getSkillRating(), style);
+                 }
+                
+            }
+        	
+        	
+        }else {
+        	Row row = secondSheet.createRow(secondRowCount++);
+            int columnCount = 0;
+        	 createCell(row, columnCount++, listAssociateSkills.get(0).getAssociateName(), style);
+             createCell(row, columnCount++, listAssociateSkills.get(0).getXid(), style);
+
+             for (SkillExcelExport skillTabData : listAssociateSkills) {
+                 createCell(row, columnCount++, skillTabData.getSkillRating(), style);
+             }
         }
+       
+        
+        
+        
     }
      
     public void export(HttpServletResponse response) throws IOException {

@@ -3,6 +3,9 @@ package com.pru.test.associate.service.repo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,17 +26,20 @@ public class AssociateSkillWithoutJPARepo {
 		SkillExcelExport skillExcelExportModel= null;
 		
 		
-		StringBuffer sqlQuery = new StringBuffer("SELECT asso.associate_name, asso.xid, (select skill_name from tbl_skills where skill_id=skill.skill_id), skill.skill_rating\r\n"
-				+ "FROM tbl_associate_skills skill\r\n"
-				+ "INNER JOIN tbl_associate_details asso\r\n"
-				+ "ON asso.associate_id = skill.associate_id\r\n"
-				+ "WHERE asso.ibm_id= :ibmId");
+		
+		StringBuffer sqlQuery = new StringBuffer("SELECT asso.associate_name, asso.xid,base.skill_name,base.rating from (select sub.associate_id,sub.skill_id,sub.skill_name,coalesce(assoOut.skill_rating ,'') as rating \n"
+				+ "from (select associate_id,skill_id,skill_name from (select distinct asso.associate_id  from tbl_associate_skills asso) foo\n"
+				+ "cross join tbl_skills) sub\n"
+				+ "LEFT JOIN tbl_associate_skills assoOut\n"
+				+ "ON assoOut.skill_id=sub.skill_id and assoOut.associate_id=sub.associate_id) base\n"
+				+ "INNER JOIN tbl_associate_details asso\n"
+				+ "ON asso.associate_id = base.associate_id\n"
+				+ "WHERE asso.ibm_id=:ibm_id");
 		
 		
 		Query query= entityManager.createNativeQuery(sqlQuery.toString());
-		query.setParameter("ibmId", ibmId);
+		query.setParameter("ibm_id", ibmId);
 		
-		//try {
 			
 			List<Object[]> obj= query.getResultList();
 			List<SkillExcelExport> skillExcelExportModelList= new ArrayList<>();
@@ -48,18 +54,49 @@ public class AssociateSkillWithoutJPARepo {
 					skillExcelExportModelList.add(skillExcelExportModel);
 				}
 			}
-		//}
-			
+				
 			return skillExcelExportModelList;
-		//	return Arrays.asList(skillExcelExportModel);
 		
 	}
 	
-//	@Query(value = "SELECT asso.associate_name, asso.xid, (select skill_name from tbl_skills where skill_id=skill.skill_id) as skillName, skill.skill_rating \r\n"
-//			+ "FROM tbl_associate_skills skill \r\n"
-//			+ "INNER JOIN tbl_associate_details asso \r\n"
-//			+ "ON asso.associate_id = skill.associate_id \r\n"
-//			+ "WHERE asso.ibm_id like %:ibmId%", nativeQuery = true)
-//	public List<SkillExcelExport> listAssociateSkillDetailsForExcelExportIbmId(@Param(value = "ibmId") String ibmId);
+	public Map<String,List<SkillExcelExport>> listAssociateSkillDetailsForExcelExport(){
+		SkillExcelExport skillExcelExportModel= null;
+		
+		
+		
+		StringBuffer sqlQuery = new StringBuffer("SELECT asso.associate_name, asso.xid,base.skill_name,base.rating from (select sub.associate_id,sub.skill_id,sub.skill_name,coalesce(assoOut.skill_rating ,'') as rating \n"
+				+ "from (select associate_id,skill_id,skill_name from (select distinct asso.associate_id  from tbl_associate_skills asso) foo\n"
+				+ "cross join tbl_skills) sub\n"
+				+ "LEFT JOIN tbl_associate_skills assoOut\n"
+				+ "ON assoOut.skill_id=sub.skill_id and assoOut.associate_id=sub.associate_id) base\n"
+				+ "INNER JOIN tbl_associate_details asso\n"
+				+ "	ON asso.associate_id = base.associate_id");
+		
+		
+		Query query= entityManager.createNativeQuery(sqlQuery.toString());
+		// query.setParameter("ibm_id", ibmId);
+		
+			
+			List<Object[]> obj= query.getResultList();
+			List<SkillExcelExport> skillExcelExportModelList= new ArrayList<>();
+			
+			if(!obj.isEmpty()) {
+				for(Object[] record : obj) {
+					skillExcelExportModel= new SkillExcelExport();
+					skillExcelExportModel.setAssociateName(String.valueOf(record[0]));
+					skillExcelExportModel.setXid(String.valueOf(record[1]));
+					skillExcelExportModel.setSkillName(String.valueOf(record[2]));
+					skillExcelExportModel.setSkillRating(String.valueOf(record[3]));
+					skillExcelExportModelList.add(skillExcelExportModel);
+				}
+			}
+			
+			Map<String, List<SkillExcelExport>> skillsPerUser = skillExcelExportModelList.stream()
+					  .collect(Collectors.groupingBy(SkillExcelExport::getXid));
+			return skillsPerUser;
+		
+	}
 
+	
+	
 }

@@ -3,6 +3,7 @@ package com.pru.test.associate.service.serviceImpl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -133,6 +134,12 @@ public class AssociateServiceImpl implements AssociateService {
 	public List<SkillExcelExport> getAssociateSkillDetailsForExcelExportIbmId(String ibmId) {
 		// TODO Auto-generated method stub
 		return associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExportIbmId(ibmId);
+	}
+
+	@Override
+	public Map<String,List<SkillExcelExport>> getlistAssociateSkillDetailsForExcelExport(){
+		// TODO Auto-generated method stub
+		return associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExport();
 	}
 
 }
