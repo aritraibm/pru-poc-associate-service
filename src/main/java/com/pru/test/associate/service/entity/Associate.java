@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
 @Table(name="tbl_associate_details")
@@ -29,6 +31,7 @@ public class Associate {
     private String emailPru;
     private String xid;
     private String prudentialManager;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
     private String location;
     private String city;
@@ -36,9 +39,13 @@ public class Associate {
     private String billCode;
     private String teamOrRole;
     private String role;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date asOnDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date pruExpDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date itExpDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date ibmDate;
     private String experienceWithPru;
     private String careerExperience;
@@ -52,6 +59,7 @@ public class Associate {
     private String visaType;
     private String workPermitValidUntil;
     private String extensionUpdates;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date visaMaxOutDate;
     private String timeLeftInUs;
     private String h1bNominations;

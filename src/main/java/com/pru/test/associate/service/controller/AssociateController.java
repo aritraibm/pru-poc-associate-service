@@ -40,21 +40,21 @@ public class AssociateController {
 	final Logger logger= LoggerFactory.getLogger(AssociateController.class);
 	
 	@PostMapping(value = "/save-associate")
-	@Retry(name = "save-associate", fallbackMethod = "invokeFallbackMethod")
+	//@Retry(name = "save-associate", fallbackMethod = "invokeFallbackMethod")
 	public AssociateWithSkillTemplateVO saveUser(@RequestBody AssociateWithSkillTemplateVO formData) {
 		
 		return associateService.saveAssociateDetails(formData);
 	}
 
 	@GetMapping(value = "/get-associate-with-skill-details-by-id/{associateId}")
-	@Retry(name = "get-associate-with-skill-details-by-id", fallbackMethod = "invokeFallbackMethod")
+	//@Retry(name = "get-associate-with-skill-details-by-id", fallbackMethod = "invokeFallbackMethod")
 	public AssociateWithSkillTemplateVO getAssociateWithSkill(@PathVariable Long associateId) {
 		
 		return associateService.getAssociateWithSkillDetails(associateId);
 	}
 	
 	@GetMapping(value = "/get-associate-details-by-id/{associateId}")
-	@Retry(name = "get-associate-details-by-id", fallbackMethod = "invokeFallbackMethod")
+	//@Retry(name = "get-associate-details-by-id", fallbackMethod = "invokeFallbackMethod")
 	public Associate getAssociate(@PathVariable Long associateId) {
 		
 		return associateService.getAssociateDetails(associateId);

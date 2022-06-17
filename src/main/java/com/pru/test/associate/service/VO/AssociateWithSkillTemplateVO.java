@@ -1,16 +1,14 @@
 package com.pru.test.associate.service.VO;
 
-import org.springframework.stereotype.Component;
+import java.util.List;
 
 import com.pru.test.associate.service.entity.Associate;
 import com.pru.test.associate.service.entity.AssociateSkill;
 
-
-
 public class AssociateWithSkillTemplateVO {
 
 	private Associate associate;
-	private AssociateSkill associateSkill;
+	private List<AssociateSkill> associateSkill;
 	
 	public Associate getAssociate() {
 		return associate;
@@ -18,24 +16,25 @@ public class AssociateWithSkillTemplateVO {
 	public void setAssociate(Associate associate) {
 		this.associate = associate;
 	}
-	public AssociateSkill getAssociateSkill() {
+	public List<AssociateSkill> getAssociateSkill() {
 		return associateSkill;
 	}
-	public void setAssociateSkill(AssociateSkill associateSkill) {
-		this.associateSkill = associateSkill;
-	}
-	public AssociateWithSkillTemplateVO(Associate associate, AssociateSkill associateSkill) {
-		super();
-		this.associate = associate;
+	public void setAssociateSkill(List<AssociateSkill> associateSkill) {
 		this.associateSkill = associateSkill;
 	}
 	public AssociateWithSkillTemplateVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public AssociateWithSkillTemplateVO(Associate associate, List<AssociateSkill> associateSkill) {
+		super();
+		this.associate = associate;
+		this.associateSkill = associateSkill;
+	}
+	
 	@Override
 	public String toString() {
-		return "RequestTemplateVO [associate=" + associate + ", associateSkill=" + associateSkill + "]";
+		return "AssociateWithSkillTemplateVO [associate=" + associate + ", associateSkill=" + associateSkill + "]";
 	}
 	
 	
