@@ -34,7 +34,8 @@ public class AssociateSkillWithoutJPARepo {
 				+ "ON assoOut.skill_id=sub.skill_id and assoOut.associate_id=sub.associate_id) base\n"
 				+ "INNER JOIN tbl_associate_details asso\n"
 				+ "ON asso.associate_id = base.associate_id\n"
-				+ "WHERE asso.ibm_id=:ibm_id");
+				+ "WHERE asso.ibm_id=:ibm_id\n"
+				+ "ORDER BY base.skill_name ASC");
 		
 		
 		Query query= entityManager.createNativeQuery(sqlQuery.toString());
@@ -70,7 +71,8 @@ public class AssociateSkillWithoutJPARepo {
 				+ "LEFT JOIN tbl_associate_skills assoOut\n"
 				+ "ON assoOut.skill_id=sub.skill_id and assoOut.associate_id=sub.associate_id) base\n"
 				+ "INNER JOIN tbl_associate_details asso\n"
-				+ "	ON asso.associate_id = base.associate_id");
+				+ "	ON asso.associate_id = base.associate_id\n"
+				+ "ORDER BY base.skill_name ASC");
 		
 		
 		Query query= entityManager.createNativeQuery(sqlQuery.toString());
