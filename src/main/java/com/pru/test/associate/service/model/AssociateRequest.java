@@ -18,9 +18,9 @@ public class AssociateRequest {
     private String band;
     private String primaryContact;
     private String emailIbm;
-    private String emailPru;
+    private String emailClient;
     private String xid;
-    private String prudentialManager;
+    private String clientManager;
     private Date endDate;
     private String location;
     private String city;
@@ -28,10 +28,10 @@ public class AssociateRequest {
     private String billCode;
     private String role;
     private Date asOnDate;
-    private Date pruExpDate;
+    private Date clientExpDate;
     private Date itExpDate;
     private Date ibmDate;
-    private String experienceWithPru;
+    private String experienceWithClient;
     private String careerExperience;
     private String experienceWithIbm;
     private String skillset;
@@ -48,6 +48,59 @@ public class AssociateRequest {
     private String h1bNominations;
     private String riskMitigationComments;
     private String planInCaseOfExtensionAmendmentRejection;
+    
+	public AssociateRequest(String associateName, String engagementName, String majorFunction, String band,
+			String primaryContact, String emailIbm, String emailClient, String xid, String clientManager, Date endDate,
+			String location, String city, String billType, String billCode, String role, Date asOnDate,
+			Date clientExpDate, Date itExpDate, Date ibmDate, String experienceWithClient, String careerExperience,
+			String experienceWithIbm, String skillset, String resourceCriticality, String atImmigrationVisaRisks,
+			Long backupSuccessorResource, String keyContingencyGroup, String additionalContingency, String visaType,
+			String workPermitValidUntil, String extensionUpdates, Date visaMaxOutDate, String timeLeftInUs,
+			String h1bNominations, String riskMitigationComments, String planInCaseOfExtensionAmendmentRejection) {
+		super();
+		this.associateName = associateName;
+		this.engagementName = engagementName;
+		this.majorFunction = majorFunction;
+		this.band = band;
+		this.primaryContact = primaryContact;
+		this.emailIbm = emailIbm;
+		this.emailClient = emailClient;
+		this.xid = xid;
+		this.clientManager = clientManager;
+		this.endDate = endDate;
+		this.location = location;
+		this.city = city;
+		this.billType = billType;
+		this.billCode = billCode;
+		this.role = role;
+		this.asOnDate = asOnDate;
+		this.clientExpDate = clientExpDate;
+		this.itExpDate = itExpDate;
+		this.ibmDate = ibmDate;
+		this.experienceWithClient = experienceWithClient;
+		this.careerExperience = careerExperience;
+		this.experienceWithIbm = experienceWithIbm;
+		this.skillset = skillset;
+		this.resourceCriticality = resourceCriticality;
+		this.atImmigrationVisaRisks = atImmigrationVisaRisks;
+		this.backupSuccessorResource = backupSuccessorResource;
+		this.keyContingencyGroup = keyContingencyGroup;
+		this.additionalContingency = additionalContingency;
+		this.visaType = visaType;
+		this.workPermitValidUntil = workPermitValidUntil;
+		this.extensionUpdates = extensionUpdates;
+		this.visaMaxOutDate = visaMaxOutDate;
+		this.timeLeftInUs = timeLeftInUs;
+		this.h1bNominations = h1bNominations;
+		this.riskMitigationComments = riskMitigationComments;
+		this.planInCaseOfExtensionAmendmentRejection = planInCaseOfExtensionAmendmentRejection;
+	}
+	
+	public AssociateRequest() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	public String getAssociateName() {
 		return associateName;
 	}
@@ -84,11 +137,11 @@ public class AssociateRequest {
 	public void setEmailIbm(String emailIbm) {
 		this.emailIbm = emailIbm;
 	}
-	public String getEmailPru() {
-		return emailPru;
+	public String getEmailClient() {
+		return emailClient;
 	}
-	public void setEmailPru(String emailPru) {
-		this.emailPru = emailPru;
+	public void setEmailClient(String emailClient) {
+		this.emailClient = emailClient;
 	}
 	public String getXid() {
 		return xid;
@@ -96,11 +149,11 @@ public class AssociateRequest {
 	public void setXid(String xid) {
 		this.xid = xid;
 	}
-	public String getPrudentialManager() {
-		return prudentialManager;
+	public String getClientManager() {
+		return clientManager;
 	}
-	public void setPrudentialManager(String prudentialManager) {
-		this.prudentialManager = prudentialManager;
+	public void setClientManager(String clientManager) {
+		this.clientManager = clientManager;
 	}
 	public Date getEndDate() {
 		return endDate;
@@ -144,11 +197,11 @@ public class AssociateRequest {
 	public void setAsOnDate(Date asOnDate) {
 		this.asOnDate = asOnDate;
 	}
-	public Date getPruExpDate() {
-		return pruExpDate;
+	public Date getClientExpDate() {
+		return clientExpDate;
 	}
-	public void setPruExpDate(Date pruExpDate) {
-		this.pruExpDate = pruExpDate;
+	public void setClientExpDate(Date clientExpDate) {
+		this.clientExpDate = clientExpDate;
 	}
 	public Date getItExpDate() {
 		return itExpDate;
@@ -162,11 +215,11 @@ public class AssociateRequest {
 	public void setIbmDate(Date ibmDate) {
 		this.ibmDate = ibmDate;
 	}
-	public String getExperienceWithPru() {
-		return experienceWithPru;
+	public String getExperienceWithClient() {
+		return experienceWithClient;
 	}
-	public void setExperienceWithPru(String experienceWithPru) {
-		this.experienceWithPru = experienceWithPru;
+	public void setExperienceWithClient(String experienceWithClient) {
+		this.experienceWithClient = experienceWithClient;
 	}
 	public String getCareerExperience() {
 		return careerExperience;
@@ -264,77 +317,24 @@ public class AssociateRequest {
 	public void setPlanInCaseOfExtensionAmendmentRejection(String planInCaseOfExtensionAmendmentRejection) {
 		this.planInCaseOfExtensionAmendmentRejection = planInCaseOfExtensionAmendmentRejection;
 	}
-	
-	
-	public AssociateRequest() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	public AssociateRequest(String associateName, String engagementName, String majorFunction, String band,
-			String primaryContact, String emailIbm, String emailPru, String xid, String prudentialManager, Date endDate,
-			String location, String city, String billType, String billCode, String role, Date asOnDate, Date pruExpDate,
-			Date itExpDate, Date ibmDate, String experienceWithPru, String careerExperience, String experienceWithIbm,
-			String skillset, String resourceCriticality, String atImmigrationVisaRisks, Long backupSuccessorResource,
-			String keyContingencyGroup, String additionalContingency, String visaType, String workPermitValidUntil,
-			String extensionUpdates, Date visaMaxOutDate, String timeLeftInUs, String h1bNominations,
-			String riskMitigationComments, String planInCaseOfExtensionAmendmentRejection) {
-		super();
-		this.associateName = associateName;
-		this.engagementName = engagementName;
-		this.majorFunction = majorFunction;
-		this.band = band;
-		this.primaryContact = primaryContact;
-		this.emailIbm = emailIbm;
-		this.emailPru = emailPru;
-		this.xid = xid;
-		this.prudentialManager = prudentialManager;
-		this.endDate = endDate;
-		this.location = location;
-		this.city = city;
-		this.billType = billType;
-		this.billCode = billCode;
-		this.role = role;
-		this.asOnDate = asOnDate;
-		this.pruExpDate = pruExpDate;
-		this.itExpDate = itExpDate;
-		this.ibmDate = ibmDate;
-		this.experienceWithPru = experienceWithPru;
-		this.careerExperience = careerExperience;
-		this.experienceWithIbm = experienceWithIbm;
-		this.skillset = skillset;
-		this.resourceCriticality = resourceCriticality;
-		this.atImmigrationVisaRisks = atImmigrationVisaRisks;
-		this.backupSuccessorResource = backupSuccessorResource;
-		this.keyContingencyGroup = keyContingencyGroup;
-		this.additionalContingency = additionalContingency;
-		this.visaType = visaType;
-		this.workPermitValidUntil = workPermitValidUntil;
-		this.extensionUpdates = extensionUpdates;
-		this.visaMaxOutDate = visaMaxOutDate;
-		this.timeLeftInUs = timeLeftInUs;
-		this.h1bNominations = h1bNominations;
-		this.riskMitigationComments = riskMitigationComments;
-		this.planInCaseOfExtensionAmendmentRejection = planInCaseOfExtensionAmendmentRejection;
-	}
 	@Override
 	public String toString() {
 		return "AssociateRequest [associateName=" + associateName + ", engagementName=" + engagementName
 				+ ", majorFunction=" + majorFunction + ", band=" + band + ", primaryContact=" + primaryContact
-				+ ", emailIbm=" + emailIbm + ", emailPru=" + emailPru + ", xid=" + xid + ", prudentialManager="
-				+ prudentialManager + ", endDate=" + endDate + ", location=" + location + ", city=" + city
-				+ ", billType=" + billType + ", billCode=" + billCode + ", role=" + role + ", asOnDate=" + asOnDate
-				+ ", pruExpDate=" + pruExpDate + ", itExpDate=" + itExpDate + ", ibmDate=" + ibmDate
-				+ ", experienceWithPru=" + experienceWithPru + ", careerExperience=" + careerExperience
-				+ ", experienceWithIbm=" + experienceWithIbm + ", skillset=" + skillset + ", resourceCriticality="
-				+ resourceCriticality + ", atImmigrationVisaRisks=" + atImmigrationVisaRisks
-				+ ", backupSuccessorResource=" + backupSuccessorResource + ", keyContingencyGroup="
-				+ keyContingencyGroup + ", additionalContingency=" + additionalContingency + ", visaType=" + visaType
-				+ ", workPermitValidUntil=" + workPermitValidUntil + ", extensionUpdates=" + extensionUpdates
-				+ ", visaMaxOutDate=" + visaMaxOutDate + ", timeLeftInUs=" + timeLeftInUs + ", h1bNominations="
-				+ h1bNominations + ", riskMitigationComments=" + riskMitigationComments
-				+ ", planInCaseOfExtensionAmendmentRejection=" + planInCaseOfExtensionAmendmentRejection + "]";
+				+ ", emailIbm=" + emailIbm + ", emailClient=" + emailClient + ", xid=" + xid + ", clientManager="
+				+ clientManager + ", endDate=" + endDate + ", location=" + location + ", city=" + city + ", billType="
+				+ billType + ", billCode=" + billCode + ", role=" + role + ", asOnDate=" + asOnDate + ", clientExpDate="
+				+ clientExpDate + ", itExpDate=" + itExpDate + ", ibmDate=" + ibmDate + ", experienceWithClient="
+				+ experienceWithClient + ", careerExperience=" + careerExperience + ", experienceWithIbm="
+				+ experienceWithIbm + ", skillset=" + skillset + ", resourceCriticality=" + resourceCriticality
+				+ ", atImmigrationVisaRisks=" + atImmigrationVisaRisks + ", backupSuccessorResource="
+				+ backupSuccessorResource + ", keyContingencyGroup=" + keyContingencyGroup + ", additionalContingency="
+				+ additionalContingency + ", visaType=" + visaType + ", workPermitValidUntil=" + workPermitValidUntil
+				+ ", extensionUpdates=" + extensionUpdates + ", visaMaxOutDate=" + visaMaxOutDate + ", timeLeftInUs="
+				+ timeLeftInUs + ", h1bNominations=" + h1bNominations + ", riskMitigationComments="
+				+ riskMitigationComments + ", planInCaseOfExtensionAmendmentRejection="
+				+ planInCaseOfExtensionAmendmentRejection + "]";
 	}
-	
     
+
 }

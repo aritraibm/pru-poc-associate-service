@@ -67,9 +67,9 @@ public class AssociateExcelExporter {
         createCell(row, 3, "Band", style); 
         createCell(row, 4, "Primary Contact", style); 
         createCell(row, 5, "Email IBM", style); 
-        createCell(row, 6, "Email Pru", style); 
+        createCell(row, 6, "Email Client", style); 
         createCell(row, 7, "XID", style); 
-        createCell(row, 8, "Prudential Manager", style); 
+        createCell(row, 8, "Client Manager", style); 
         //end date
         createCell(row, 9, "Location", style); 
         createCell(row, 10, "City", style); 
@@ -80,7 +80,7 @@ public class AssociateExcelExporter {
         //Pru Exp Date	
         //IT Exp Date	
         //IBM Date
-        createCell(row, 14, "Experience with Prudential", style); 
+        createCell(row, 14, "Experience with Client", style); 
         createCell(row, 15, "Career Experience", style); 
         createCell(row, 16, "Experience with IBM	Skillset", style); 
         createCell(row, 17, "Resource Criticality", style); 
@@ -109,7 +109,7 @@ public class AssociateExcelExporter {
         sRowStyle.setFont(sRowFont);
               
         createCell(secondRow, 0, "Resource Names", sRowStyle);
-        createCell(secondRow, 1, "Prudential XID", sRowStyle);
+        createCell(secondRow, 1, "Client XID", sRowStyle);
 //        createCell(secondRow, 2, "Skill Name", sRowStyle);
 //        createCell(secondRow, 3, "Skill Rating", sRowStyle);
         
@@ -166,15 +166,15 @@ public class AssociateExcelExporter {
             createCell(row, columnCount++, associate.getBand(), style);
             createCell(row, columnCount++, associate.getPrimaryContact(), style);
             createCell(row, columnCount++, associate.getEmailIbm(), style);
-            createCell(row, columnCount++, associate.getEmailPru(), style);
+            createCell(row, columnCount++, associate.getEmailClient(), style);
             createCell(row, columnCount++, associate.getXid(), style);
-            createCell(row, columnCount++, associate.getPrudentialManager(), style);
+            createCell(row, columnCount++, associate.getClientManager(), style);
             createCell(row, columnCount++, associate.getLocation(), style);
             createCell(row, columnCount++, associate.getCity(), style);
             createCell(row, columnCount++, associate.getBillType(), style);
             createCell(row, columnCount++, associate.getBillCode(), style);
             createCell(row, columnCount++, associate.getTeamOrRole(), style);
-            createCell(row, columnCount++, associate.getExperienceWithPru(), style);
+            createCell(row, columnCount++, associate.getExperienceWithClient(), style);
             createCell(row, columnCount++, associate.getCareerExperience(), style);
             createCell(row, columnCount++, associate.getExperienceWithIbm(), style);
             createCell(row, columnCount++, associate.getResourceCriticality(), style);
