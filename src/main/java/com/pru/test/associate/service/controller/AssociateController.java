@@ -44,7 +44,7 @@ public class AssociateController {
 	@PostMapping(value = "/save-associate")
 	//@Retry(name = "save-associate", fallbackMethod = "invokeFallbackMethod")
 	public AssociateWithSkillTemplateVO saveUser(@RequestBody AssociateWithSkillTemplateVO formData) {
-		
+		// System.out.println(":::::::: >>>>>>"+formData);
 		return associateService.saveAssociateDetails(formData);
 	}
 
@@ -60,6 +60,14 @@ public class AssociateController {
 	public Associate getAssociate(@PathVariable Long associateId) {
 		
 		return associateService.getAssociateDetails(associateId);
+	}
+	
+	
+	@GetMapping(value = "/get-all-associates")
+	//@Retry(name = "get-associate-details-by-id", fallbackMethod = "invokeFallbackMethod")
+	public List<Associate> getAllAssociates() {
+		
+		return associateService.getAllAssociateDetails();
 	}
 	
 	

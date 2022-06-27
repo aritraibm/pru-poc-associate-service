@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -45,6 +47,8 @@ public class AssociateServiceImpl implements AssociateService {
 
 	@Value("${skill.service.url}")
 	private String skillServiceUrl;
+	
+	final Logger logger= LoggerFactory.getLogger(AssociateServiceImpl.class);
 
 	@Override
 	@Transactional
@@ -80,6 +84,7 @@ public class AssociateServiceImpl implements AssociateService {
 	@Override
 	public AssociateWithSkillTemplateVO getAssociateWithSkillDetails(Long associateId) {
 
+		logger.info("associateId is :: >"+associateId);
 		AssociateWithSkillTemplateVO responseTemplateVO = new AssociateWithSkillTemplateVO();
 		Associate associate = getAssociateDetails(associateId);
 		HttpEntity<String> entity = new HttpEntity<String>(restHeader());
@@ -127,7 +132,7 @@ public class AssociateServiceImpl implements AssociateService {
 	@Override
 	public List<Associate> getAssociateDetailsForExcelExport() {
 		// TODO Auto-generated method stub
-		return associateRepo.findAll();
+		return findAllAssociates();
 	}
 
 	@Override
@@ -142,4 +147,14 @@ public class AssociateServiceImpl implements AssociateService {
 		return associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExport();
 	}
 
+	@Override
+	public List<Associate> getAllAssociateDetails() {
+		// TODO Auto-generated method stub
+		return findAllAssociates();
+	}
+	
+	private List<Associate> findAllAssociates() {
+		// TODO Auto-generated method stub
+		return associateRepo.findAll();
+	} 
 }

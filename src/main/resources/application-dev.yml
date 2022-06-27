@@ -25,10 +25,6 @@ spring:
 logging:
   file.name: C:/Users/002TCO744/Desktop/elk-logs/associate-service.log
 
-#department:
-#  service:
-#    url: http://DEPARTMENT-SERVICE
-
 #eureka:
 #  client:
 #    register-with-eureka: true

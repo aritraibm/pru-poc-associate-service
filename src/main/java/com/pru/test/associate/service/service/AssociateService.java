@@ -34,5 +34,7 @@ public interface AssociateService {
 
 	public Map<String, List<SkillExcelExport>> getlistAssociateSkillDetailsForExcelExport();
 
+	public List<Associate> getAllAssociateDetails();
+
 	
 }
