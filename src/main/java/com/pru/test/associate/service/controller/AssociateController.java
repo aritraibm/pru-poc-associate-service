@@ -6,6 +6,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,6 +78,13 @@ public class AssociateController {
 		
 		return associateService.searchAssociateDetails(formData);
 	}
+	
+	// search by date
+		@GetMapping(value = "/search-associate-bydate/{date}")
+		// @Retry(name = "search-associate", fallbackMethod = "invokeFallbackMethod")
+		public List<Associate> searchAssociateByDate(@PathVariable(name = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+			return associateService.searchAssociateDetailsByDate(date);
+		}
 	
 	@GetMapping("/export-excel/{ibmId}")
     public void exportToExcelByIbmId(@PathVariable String ibmId, HttpServletResponse response) throws IOException {

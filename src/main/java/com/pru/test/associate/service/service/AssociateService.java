@@ -1,5 +1,6 @@
 package com.pru.test.associate.service.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +32,8 @@ public interface AssociateService {
 	public List<Associate> getAssociateDetailsForExcelExport();
 
 	public List<SkillExcelExport> getAssociateSkillDetailsForExcelExportIbmId(String ibmId);
+	
+	public List<Associate> searchAssociateDetailsByDate(Date date);
 
 	public Map<String, List<SkillExcelExport>> getlistAssociateSkillDetailsForExcelExport();
 
