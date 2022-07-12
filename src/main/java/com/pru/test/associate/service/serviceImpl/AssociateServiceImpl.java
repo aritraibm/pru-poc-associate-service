@@ -2,6 +2,7 @@ package com.pru.test.associate.service.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -147,6 +148,14 @@ public class AssociateServiceImpl implements AssociateService {
 		return associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExport();
 	}
 
+	@Override
+	public List<Associate> searchAssociateDetailsByDate(Date date) {
+		// TODO Auto-generated method stub
+		java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
+		return associateRepo.searchAssociateDetailsByDateSQL(sqlStartDate);
+		// return null;
+	}
+	
 	@Override
 	public List<Associate> getAllAssociateDetails() {
 		// TODO Auto-generated method stub

@@ -1,5 +1,6 @@
 package com.pru.test.associate.service.repo;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,6 +25,8 @@ public interface AssociateRepo extends JpaRepository<Associate, Long> {
 	@Query(value = "select * from tbl_associate_details where associate_name like %:associateName%", nativeQuery = true)
 	public List<Associate> searchAssociateDetailsSQL(@Param(value = "associateName") String associateName);
 	
+	@Query(value = "select * from tbl_associate_details where as_on_date = :date", nativeQuery = true)
+	public List<Associate> searchAssociateDetailsByDateSQL(Date date);
 	
 //	@Query(value = "SELECT asso.associate_name, asso.xid, (select skill_name from tbl_skills where skill_id=skill.skill_id) as skillName, skill.skill_rating \r\n"
 //			+ "FROM tbl_associate_skills skill \r\n"
