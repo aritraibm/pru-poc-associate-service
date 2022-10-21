@@ -4,14 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
 import com.pru.test.associate.service.VO.AssociateWithSkillTemplateVO;
 import com.pru.test.associate.service.entity.Associate;
-import com.pru.test.associate.service.model.AssociateRequest;
 import com.pru.test.associate.service.model.SearchAssociateRequest;
 import com.pru.test.associate.service.model.SkillExcelExport;
 

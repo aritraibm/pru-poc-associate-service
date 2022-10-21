@@ -2,18 +2,9 @@ server:
   port: 9092
   
 spring:
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-       dialect = org.hibernate.dialect.PostgreSQLDialect
-  datasource:
-    url: jdbc:postgresql://localhost:5432/prudential-onboarding
-    username: postgres
-    password: admin
-    driverClassName: org.postgresql.Driver
+  data:
+    mongodb:
+      uri: mongodb+srv://root:WBJsDZphl9loQGt4@mongodb.lqmn4.mongodb.net/onboarding-prudential?retryWrites=true&w=majority
   application:
     name: ASSOCIATE-SERVICE
   config:
@@ -23,7 +14,7 @@ spring:
 #    base-url: http://127.0.0.1:9411/
     
 logging:
-  file.name: C:/Users/002TCO744/Desktop/elk-logs/associate-service.log
+  file.name: C:/Users/003EMS744/DriveSetup/logs/associate-service.log
 
 #eureka:
 #  client:

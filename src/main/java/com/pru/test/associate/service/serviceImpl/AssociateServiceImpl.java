@@ -1,12 +1,9 @@
 package com.pru.test.associate.service.serviceImpl;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +20,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.pru.test.associate.service.VO.AssociateWithSkillTemplateVO;
 import com.pru.test.associate.service.entity.Associate;
-import com.pru.test.associate.service.entity.AssociateSkill;
 import com.pru.test.associate.service.model.SearchAssociateRequest;
 import com.pru.test.associate.service.model.SkillExcelExport;
 import com.pru.test.associate.service.repo.AssociateRepo;
 import com.pru.test.associate.service.repo.AssociateSkillRepo;
-import com.pru.test.associate.service.repo.AssociateSkillWithoutJPARepo;
 import com.pru.test.associate.service.service.AssociateService;
 
 @Service
@@ -40,8 +35,8 @@ public class AssociateServiceImpl implements AssociateService {
 	@Autowired
 	private AssociateRepo associateRepo;
 
-	@Autowired
-	private AssociateSkillWithoutJPARepo associateSkillWithoutJPARepo;
+	//@Autowired
+	//private AssociateSkillWithoutJPARepo associateSkillWithoutJPARepo;
 
 	@Autowired
 	private AssociateSkillRepo associateSkillRepo;
@@ -52,24 +47,24 @@ public class AssociateServiceImpl implements AssociateService {
 	final Logger logger= LoggerFactory.getLogger(AssociateServiceImpl.class);
 
 	@Override
-	@Transactional
+	//@Transactional
 	public AssociateWithSkillTemplateVO saveAssociateDetails(AssociateWithSkillTemplateVO formData) {
 
-		Associate asso = formData.getAssociate();
-		asso.setActiveInactive("Active");
-		Associate associateResponse = associateRepo.save(asso);
-
-		List<AssociateSkill> assoSkill = formData.getAssociateSkill();
-		List<AssociateSkill> saveAssoSkill = new ArrayList<>();
-		for (AssociateSkill skillTabheader : assoSkill) {
-			skillTabheader.setAssociateId(associateResponse.getAssociateId());
-			saveAssoSkill.add(skillTabheader);
-		}
-		List<AssociateSkill> associateSkillResponse = associateSkillRepo.saveAll(saveAssoSkill);
+//		Associate asso = formData.getAssociate();
+//		asso.setActiveInactive("Active");
+//		Associate associateResponse = associateRepo.save(asso);
+//
+//		List<AssociateSkill> assoSkill = formData.getAssociateSkill();
+//		List<AssociateSkill> saveAssoSkill = new ArrayList<>();
+//		for (AssociateSkill skillTabheader : assoSkill) {
+//			skillTabheader.setAssociateId(associateResponse.getAssociateId());
+//			saveAssoSkill.add(skillTabheader);
+//		}
+//		List<AssociateSkill> associateSkillResponse = associateSkillRepo.saveAll(saveAssoSkill);
 
 		AssociateWithSkillTemplateVO responseVO = new AssociateWithSkillTemplateVO();
-		responseVO.setAssociate(associateResponse);
-		responseVO.setAssociateSkill(associateSkillResponse);
+		//responseVO.setAssociate(associateResponse);
+		//responseVO.setAssociateSkill(associateSkillResponse);
 
 		return responseVO;
 	}
@@ -120,14 +115,14 @@ public class AssociateServiceImpl implements AssociateService {
 
 		// return
 		// associateRepo.searchAssociateDetailsSQL(associateName,band,emailIbm,xid);
-		return associateRepo.searchAssociateDetailsSQL(associateName);
+		return associateRepo.findByAssociateNameLike(associateName);
 		// return null;
 	}
 
 	@Override
 	public List<Associate> getAssociateDetailsForExcelExportIbmId(String ibmId) {
 		// TODO Auto-generated method stub
-		return associateRepo.getExcelDetailsByAssociateId(ibmId);
+		return associateRepo.findByIbmIdLike(ibmId);
 	}
 
 	@Override
@@ -139,20 +134,22 @@ public class AssociateServiceImpl implements AssociateService {
 	@Override
 	public List<SkillExcelExport> getAssociateSkillDetailsForExcelExportIbmId(String ibmId) {
 		// TODO Auto-generated method stub
-		return associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExportIbmId(ibmId);
+		//associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExportIbmId(ibmId);
+		return null;
 	}
 
 	@Override
 	public Map<String,List<SkillExcelExport>> getlistAssociateSkillDetailsForExcelExport(){
 		// TODO Auto-generated method stub
-		return associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExport();
+		//associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExport();
+		return null;
 	}
 
 	@Override
 	public List<Associate> searchAssociateDetailsByDate(Date date) {
 		// TODO Auto-generated method stub
 		java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
-		return associateRepo.searchAssociateDetailsByDateSQL(sqlStartDate);
+		return associateRepo.findByAsOnDate(sqlStartDate);
 		// return null;
 	}
 	

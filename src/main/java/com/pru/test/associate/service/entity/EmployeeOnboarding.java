@@ -2,31 +2,23 @@ package com.pru.test.associate.service.entity;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Setter
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name="tbl_emplyee_onboarding")
+@AllArgsConstructor
+@Data
+@Document("employee_onboarding")
 public class EmployeeOnboarding {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long tblId;
-	
+	private Long empOnbrdId;	
 	private String empId;
 	private String xid;
 	private String name;
