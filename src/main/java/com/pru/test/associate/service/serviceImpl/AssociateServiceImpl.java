@@ -1,5 +1,6 @@
 package com.pru.test.associate.service.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -20,10 +21,12 @@ import org.springframework.web.client.RestTemplate;
 
 import com.pru.test.associate.service.VO.AssociateWithSkillTemplateVO;
 import com.pru.test.associate.service.entity.Associate;
+import com.pru.test.associate.service.entity.AssociateSkill;
 import com.pru.test.associate.service.model.SearchAssociateRequest;
 import com.pru.test.associate.service.model.SkillExcelExport;
 import com.pru.test.associate.service.repo.AssociateRepo;
 import com.pru.test.associate.service.repo.AssociateSkillRepo;
+//import com.pru.test.associate.service.repo.AssociateSkillWithoutJPARepo;
 import com.pru.test.associate.service.service.AssociateService;
 
 @Service
@@ -47,24 +50,23 @@ public class AssociateServiceImpl implements AssociateService {
 	final Logger logger= LoggerFactory.getLogger(AssociateServiceImpl.class);
 
 	@Override
-	//@Transactional
 	public AssociateWithSkillTemplateVO saveAssociateDetails(AssociateWithSkillTemplateVO formData) {
 
-//		Associate asso = formData.getAssociate();
-//		asso.setActiveInactive("Active");
-//		Associate associateResponse = associateRepo.save(asso);
-//
-//		List<AssociateSkill> assoSkill = formData.getAssociateSkill();
-//		List<AssociateSkill> saveAssoSkill = new ArrayList<>();
-//		for (AssociateSkill skillTabheader : assoSkill) {
-//			skillTabheader.setAssociateId(associateResponse.getAssociateId());
-//			saveAssoSkill.add(skillTabheader);
-//		}
-//		List<AssociateSkill> associateSkillResponse = associateSkillRepo.saveAll(saveAssoSkill);
+		Associate asso = formData.getAssociate();
+		asso.setActiveInactive("Active");
+		Associate associateResponse = associateRepo.save(asso);
+
+		List<AssociateSkill> assoSkill = formData.getAssociateSkill();
+		List<AssociateSkill> saveAssoSkill = new ArrayList<>();
+		for (AssociateSkill skillTabheader : assoSkill) {
+			skillTabheader.setAssociateId(associateResponse.getAssociateId());
+			saveAssoSkill.add(skillTabheader);
+		}
+		List<AssociateSkill> associateSkillResponse = associateSkillRepo.saveAll(saveAssoSkill);
 
 		AssociateWithSkillTemplateVO responseVO = new AssociateWithSkillTemplateVO();
-		//responseVO.setAssociate(associateResponse);
-		//responseVO.setAssociateSkill(associateSkillResponse);
+		responseVO.setAssociate(associateResponse);
+		responseVO.setAssociateSkill(associateSkillResponse);
 
 		return responseVO;
 	}
