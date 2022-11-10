@@ -1,5 +1,6 @@
 #cmd : docker build -t associate-service .
-FROM openjdk:8
+FROM eclipse-temurin:8-jdk-alpine
 EXPOSE 9092
-ADD target/associate-service.jar associate-service.jar
+VOLUME /tmp
+COPY target/*.jar associate-service.jar
 ENTRYPOINT ["java","-jar","/associate-service.jar"]
