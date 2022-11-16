@@ -29,4 +29,59 @@ public class EmployeeOnboarding {
 	private Date onboardingDate;
 	private String bgc;
 	
+	public Long getEmpOnbrdId() {
+		return empOnbrdId;
+	}
+	public void setEmpOnbrdId(Long empOnbrdId) {
+		this.empOnbrdId = empOnbrdId;
+	}
+	public String getEmpId() {
+		return empId;
+	}
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+	public String getXid() {
+		return xid;
+	}
+	public void setXid(String xid) {
+		this.xid = xid;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getIntranetId() {
+		return intranetId;
+	}
+	public void setIntranetId(String intranetId) {
+		this.intranetId = intranetId;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getSite() {
+		return site;
+	}
+	public void setSite(String site) {
+		this.site = site;
+	}
+	public Date getOnboardingDate() {
+		return onboardingDate;
+	}
+	public void setOnboardingDate(Date onboardingDate) {
+		this.onboardingDate = onboardingDate;
+	}
+	public String getBgc() {
+		return bgc;
+	}
+	public void setBgc(String bgc) {
+		this.bgc = bgc;
+	}
+	
 }

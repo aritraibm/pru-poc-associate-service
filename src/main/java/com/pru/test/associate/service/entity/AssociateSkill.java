@@ -13,10 +13,19 @@ import lombok.NoArgsConstructor;
 @Document("associate_skill")
 public class AssociateSkill {
 
-	@Id
-	private Long associateSkillId;
-    private Long associateId;
     private Long skillId;
     private String skillRating;
     
+	public Long getSkillId() {
+		return skillId;
+	}
+	public void setSkillId(Long skillId) {
+		this.skillId = skillId;
+	}
+	public String getSkillRating() {
+		return skillRating;
+	}
+	public void setSkillRating(String skillRating) {
+		this.skillRating = skillRating;
+	}
 }

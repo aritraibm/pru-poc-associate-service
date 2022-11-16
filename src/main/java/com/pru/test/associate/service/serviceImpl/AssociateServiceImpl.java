@@ -71,6 +71,26 @@ public class AssociateServiceImpl implements AssociateService {
 		return responseVO;
 	}
 
+	@Override
+	public boolean saveAllAssociateDetails(List<AssociateWithSkillTemplateVO> newAssociates) {
+		boolean isAllAssociateSaved = false;
+		newAssociates.forEach(associate -> {
+			Associate asso = associate.getAssociate();
+			asso.setActiveInactive("Active");
+			Associate associateResponse = associateRepo.save(asso);
+
+			List<AssociateSkill> assoSkill = associate.getAssociateSkill();
+			List<AssociateSkill> saveAssoSkill = new ArrayList<>();
+			for (AssociateSkill skillTabheader : assoSkill) {
+				skillTabheader.setAssociateId(associateResponse.getAssociateId());
+				saveAssoSkill.add(skillTabheader);
+			}
+			associateSkillRepo.saveAll(saveAssoSkill);
+		});
+		isAllAssociateSaved = true;
+		return isAllAssociateSaved;
+	}
+	
 	public HttpHeaders restHeader() {
 
 		HttpHeaders headers = new HttpHeaders();

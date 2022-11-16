@@ -14,4 +14,28 @@ public class SearchAssociateRequest {
     private String emailIbm;
     private String xid;
     
+	public String getAssociateName() {
+		return associateName;
+	}
+	public void setAssociateName(String associateName) {
+		this.associateName = associateName;
+	}
+	public String getBand() {
+		return band;
+	}
+	public void setBand(String band) {
+		this.band = band;
+	}
+	public String getEmailIbm() {
+		return emailIbm;
+	}
+	public void setEmailIbm(String emailIbm) {
+		this.emailIbm = emailIbm;
+	}
+	public String getXid() {
+		return xid;
+	}
+	public void setXid(String xid) {
+		this.xid = xid;
+	}
 }
