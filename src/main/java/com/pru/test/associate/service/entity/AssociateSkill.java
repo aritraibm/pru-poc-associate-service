@@ -14,14 +14,14 @@ import lombok.NoArgsConstructor;
 public class AssociateSkill {
 
 	@Id
-	private Long skillId;
+	private String skillId;
 	private String associateId;    
     private String skillRating;
     
-	public Long getSkillId() {
+	public String getSkillId() {
 		return skillId;
 	}
-	public void setSkillId(Long skillId) {
+	public void setSkillId(String skillId) {
 		this.skillId = skillId;
 	}
 	public String getSkillRating() {
