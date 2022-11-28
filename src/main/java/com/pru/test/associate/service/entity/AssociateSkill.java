@@ -13,7 +13,9 @@ import lombok.NoArgsConstructor;
 @Document("associate_skill")
 public class AssociateSkill {
 
-    private Long skillId;
+	@Id
+	private Long skillId;
+	private String associateId;    
     private String skillRating;
     
 	public Long getSkillId() {
