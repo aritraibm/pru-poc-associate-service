@@ -65,6 +65,12 @@ public class Associate {
     private String riskMitigationComments;
     private String planInCaseOfExtensionAmendmentRejection;
     private String activeInactive;
+    private String email;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date experienceClient;
+    private String totalITExperience;
+    private String totalExperienceWithIBM;
+    private String visaNominations;
     
     public Associate(String associateName, String ibmId, String emailIbm, String activeInactive) {
         this.associateName = associateName;
