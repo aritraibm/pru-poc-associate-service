@@ -65,5 +65,12 @@ public class Associate {
     private String riskMitigationComments;
     private String planInCaseOfExtensionAmendmentRejection;
     private String activeInactive;
+    
+    public Associate(String associateName, String ibmId, String emailIbm, String activeInactive) {
+        this.associateName = associateName;
+        this.ibmId = ibmId;
+        this.emailIbm = emailIbm;
+        this.activeInactive = activeInactive;
+    }
    
 }
