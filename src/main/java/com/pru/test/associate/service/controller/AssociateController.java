@@ -43,6 +43,11 @@ public class AssociateController {
 		return associateService.saveAssociateDetails(formData);
 	}
 
+	@PostMapping(value = "/save-all-associate")
+	public boolean saveUser(@RequestBody List<AssociateWithSkillTemplateVO> newAssociates) {
+		return associateService.saveAllAssociateDetails(newAssociates);
+	}
+	
 	@GetMapping(value = "/get-associate-with-skill-details-by-id/{associateId}")
 	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
 	public AssociateWithSkillTemplateVO getAssociateWithSkill(@PathVariable Long associateId) {

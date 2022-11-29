@@ -16,6 +16,8 @@ public interface AssociateService {
 	
 	public AssociateWithSkillTemplateVO saveAssociateDetails(AssociateWithSkillTemplateVO formData);
 
+	public boolean saveAllAssociateDetails(List<AssociateWithSkillTemplateVO> newAssociates);
+	
 	public AssociateWithSkillTemplateVO getAssociateWithSkillDetails(Long associateId);
 
 	public Associate getAssociateDetails(Long associateId);
