@@ -12,6 +12,7 @@ import com.pru.test.associate.service.model.SkillExcelExport;
 
 public interface AssociateService {
 
+	public Associate newAssociateDetails(Associate formData);
 	
 	public AssociateWithSkillTemplateVO saveAssociateDetails(AssociateWithSkillTemplateVO formData);
 

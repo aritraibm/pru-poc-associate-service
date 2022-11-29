@@ -29,6 +29,13 @@ public class AssociateController {
 	
 	final Logger logger= LoggerFactory.getLogger(AssociateController.class);
 	
+	@PostMapping(value = "/new-associate")
+	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
+	public Associate newUser(@RequestBody Associate formData) {
+		// System.out.println(":::::::: >>>>>>"+formData);
+		return associateService.newAssociateDetails(formData);
+	}
+	
 	@PostMapping(value = "/save-associate")
 	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
 	public AssociateWithSkillTemplateVO saveUser(@RequestBody AssociateWithSkillTemplateVO formData) {

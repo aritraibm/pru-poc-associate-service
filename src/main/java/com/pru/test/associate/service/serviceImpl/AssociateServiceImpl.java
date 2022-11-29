@@ -38,16 +38,16 @@ public class AssociateServiceImpl implements AssociateService {
 	@Autowired
 	private AssociateRepo associateRepo;
 
-	//@Autowired
-	//private AssociateSkillWithoutJPARepo associateSkillWithoutJPARepo;
+	// @Autowired
+	// private AssociateSkillWithoutJPARepo associateSkillWithoutJPARepo;
 
 	@Autowired
 	private AssociateSkillRepo associateSkillRepo;
 
 	@Value("${skill.service.url}")
 	private String skillServiceUrl;
-	
-	final Logger logger= LoggerFactory.getLogger(AssociateServiceImpl.class);
+
+	final Logger logger = LoggerFactory.getLogger(AssociateServiceImpl.class);
 
 	@Override
 	public AssociateWithSkillTemplateVO saveAssociateDetails(AssociateWithSkillTemplateVO formData) {
@@ -82,7 +82,7 @@ public class AssociateServiceImpl implements AssociateService {
 	@Override
 	public AssociateWithSkillTemplateVO getAssociateWithSkillDetails(Long associateId) {
 
-		logger.info("associateId is :: >"+associateId);
+		logger.info("associateId is :: >" + associateId);
 		AssociateWithSkillTemplateVO responseTemplateVO = new AssociateWithSkillTemplateVO();
 		Associate associate = getAssociateDetails(associateId);
 		HttpEntity<String> entity = new HttpEntity<String>(restHeader());
@@ -136,14 +136,14 @@ public class AssociateServiceImpl implements AssociateService {
 	@Override
 	public List<SkillExcelExport> getAssociateSkillDetailsForExcelExportIbmId(String ibmId) {
 		// TODO Auto-generated method stub
-		//associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExportIbmId(ibmId);
+		// associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExportIbmId(ibmId);
 		return null;
 	}
 
 	@Override
-	public Map<String,List<SkillExcelExport>> getlistAssociateSkillDetailsForExcelExport(){
+	public Map<String, List<SkillExcelExport>> getlistAssociateSkillDetailsForExcelExport() {
 		// TODO Auto-generated method stub
-		//associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExport();
+		// associateSkillWithoutJPARepo.listAssociateSkillDetailsForExcelExport();
 		return null;
 	}
 
@@ -154,15 +154,22 @@ public class AssociateServiceImpl implements AssociateService {
 		return associateRepo.findByAsOnDate(sqlStartDate);
 		// return null;
 	}
-	
+
 	@Override
 	public List<Associate> getAllAssociateDetails() {
 		// TODO Auto-generated method stub
 		return findAllAssociates();
 	}
-	
+
 	private List<Associate> findAllAssociates() {
 		// TODO Auto-generated method stub
 		return associateRepo.findAll();
-	} 
+	}
+
+	@Override
+	public Associate newAssociateDetails(Associate formData) {
+		// TODO Auto-generated method stub
+		return associateRepo.save(new Associate(formData.getAssociateName(), formData.getIbmId(),
+				formData.getEmailIbm(), formData.getActiveInactive()));
+	}
 }

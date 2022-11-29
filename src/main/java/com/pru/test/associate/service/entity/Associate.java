@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Associate {
 
 	@Id
-	private Long associateId;
+	private String associateId;
     private String associateName;
     private String ibmId;
     private Long projectId;
@@ -64,6 +64,6 @@ public class Associate {
     private String h1bNominations;
     private String riskMitigationComments;
     private String planInCaseOfExtensionAmendmentRejection;
-    private String activeInactive;    
+    private String activeInactive;
    
 }

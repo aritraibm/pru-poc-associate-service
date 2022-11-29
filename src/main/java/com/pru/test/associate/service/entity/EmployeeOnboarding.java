@@ -16,17 +16,16 @@ import lombok.NoArgsConstructor;
 @Data
 @Document("employee_onboarding")
 public class EmployeeOnboarding {
-	
+
 	@Id
-	private Long empOnbrdId;	
+	private Long empOnbrdId;
 	private String empId;
 	private String xid;
 	private String name;
 	private String intranetId;
 	private String location;
 	private String site;
-	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date onboardingDate;
 	private String bgc;
-	
+
 }
