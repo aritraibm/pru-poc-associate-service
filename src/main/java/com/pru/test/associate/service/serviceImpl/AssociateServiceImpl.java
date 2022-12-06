@@ -100,28 +100,20 @@ public class AssociateServiceImpl implements AssociateService {
 	}
 
 	@Override
-	public AssociateWithSkillTemplateVO getAssociateWithSkillDetails(Long associateId) {
+	public AssociateWithSkillTemplateVO getAssociateWithSkillDetails(String associateId) {
 
 		logger.info("associateId is :: >" + associateId);
 		AssociateWithSkillTemplateVO responseTemplateVO = new AssociateWithSkillTemplateVO();
 		Associate associate = getAssociateDetails(associateId);
-		HttpEntity<String> entity = new HttpEntity<String>(restHeader());
-		// List<AssociateSkill> skills= (List<AssociateSkill>)
-		// restTemplate.getForObject(skillServiceUrl+"/pru-skill/get-skill/"+associate.getAssociateId(),
-		// AssociateSkill.class);
-		ResponseEntity<List> skills = restTemplate.exchange(
-				skillServiceUrl + "/pru-skill/get-skill/" + associate.getAssociateId(), HttpMethod.GET, entity,
-				new ParameterizedTypeReference<List>() {
-				}, associate.getAssociateId());
-
+		List<AssociateSkill> associateSkills = associateSkillRepo.findByAssociateId(associate.getAssociateId());
 		responseTemplateVO.setAssociate(associate);
-		responseTemplateVO.setAssociateSkill(skills.getBody());
+		responseTemplateVO.setAssociateSkill(associateSkills);
 
 		return responseTemplateVO;
 	}
 
 	@Override
-	public Associate getAssociateDetails(Long associateId) {
+	public Associate getAssociateDetails(String associateId) {
 
 		return associateRepo.findByAssociateId(associateId);
 	}

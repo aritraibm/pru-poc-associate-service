@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.pru.test.associate.service.entity.Associate;
 
 @Repository
-public interface AssociateRepo extends MongoRepository<Associate, Long> {
+public interface AssociateRepo extends MongoRepository<Associate, String> {
 
-	Associate findByAssociateId(Long associateId);
+	Associate findByAssociateId(String associateId);
 	
 //	@Query(value = "select * from tbl_associate_details where ibm_id like %:ibmId%", nativeQuery = true)
 //	public List<Associate> getExcelDetailsByAssociateId(@Param(value = "ibmId") String ibmId);

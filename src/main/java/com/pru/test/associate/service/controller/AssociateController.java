@@ -1,5 +1,6 @@
 package com.pru.test.associate.service.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,14 +51,14 @@ public class AssociateController {
 	
 	@GetMapping(value = "/get-associate-with-skill-details-by-id/{associateId}")
 	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
-	public AssociateWithSkillTemplateVO getAssociateWithSkill(@PathVariable Long associateId) {
+	public AssociateWithSkillTemplateVO getAssociateWithSkill(@PathVariable String associateId) {
 		
 		return associateService.getAssociateWithSkillDetails(associateId);
 	}
 	
 	@GetMapping(value = "/get-associate-details-by-id/{associateId}")
 	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
-	public Associate getAssociate(@PathVariable Long associateId) {
+	public Associate getAssociate(@PathVariable String associateId) {
 		
 		return associateService.getAssociateDetails(associateId);
 	}
@@ -65,9 +66,15 @@ public class AssociateController {
 	
 	@GetMapping(value = "/get-all-associates")
 	@PreAuthorize("hasAnyRole({'ROLE_ONBOARDING_REVIEWER','ROLE_ONBOARDING_MANAGER'})")
-	public List<Associate> getAllAssociates() {
+	public List<AssociateWithSkillTemplateVO> getAllAssociates() {
+		List<Associate> associates = associateService.getAllAssociateDetails();
+		List<AssociateWithSkillTemplateVO> asw=new ArrayList<>();
 		
-		return associateService.getAllAssociateDetails();
+		for (Associate associate : associates) {
+			AssociateWithSkillTemplateVO swvo = associateService.getAssociateWithSkillDetails(associate.getAssociateId());
+			asw.add(swvo);
+		}
+		return asw;
 	}
 	
 	

@@ -18,9 +18,9 @@ public interface AssociateService {
 
 	public boolean saveAllAssociateDetails(List<AssociateWithSkillTemplateVO> newAssociates);
 	
-	public AssociateWithSkillTemplateVO getAssociateWithSkillDetails(Long associateId);
+	public AssociateWithSkillTemplateVO getAssociateWithSkillDetails(String associateId);
 
-	public Associate getAssociateDetails(Long associateId);
+	public Associate getAssociateDetails(String associateId);
 
 	public List<Associate> searchAssociateDetails(SearchAssociateRequest formData);
 
